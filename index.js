@@ -1,13 +1,23 @@
 import express from 'express';
-
 import cors from 'cors';
 import posts from './routers/posts.js';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const URI = 'mongodb+srv://20521204:1944838403@cluster0.mjw8tqk.mongodb.net/?retryWrites=true&w=majority'
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const URI = process.env.DATABASE_URL;
+
+app.use(cors());
+app.use(express.json({ limit: '30mb' }));
+app.use(express.urlencoded({ extended: true, limit: '30mb' }));
+
+app.use('/posts', posts);
+
+
 
 mongoose
   .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -20,4 +30,3 @@ mongoose
   .catch((err) => {
     console.log('err', err);
   });
-
