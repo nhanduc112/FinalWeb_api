@@ -20,7 +20,7 @@ const UserSchema = new mongoose.Schema(
     },
     city: {
       type: String,
-      required: true,
+      
     },
     phone: {
       type: String,
@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: true
     },
     isAdmin: {
       type: Boolean,
@@ -39,3 +39,4 @@ const UserSchema = new mongoose.Schema(
 );
 
 export default mongoose.model("User", UserSchema);
+
